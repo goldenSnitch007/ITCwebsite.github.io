@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ITC - Home</title>
+  <!-- Google Fonts for consistent typography -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+   <link rel="stylesheet" href="index.css" /> 
+
+
+</head>
+<body>
+  <!-- Header & Nav -->
+  <header>
+    <div class="brand">ITC</div>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>WELCOME TO INSTITUTE TECHNICAL COUNCIL</h1>
+      <p>Innovate. Tinker. Create!</p>
+      <button class="cta-btn" onclick="location.href='about.html'">Learn More</button>
+    </div>
+  </section>
+
+  <!-- Info Section -->
+  <section class="info-section">
+    <h2>What is ITC?</h2>
+    <p>
+      The Institute Technical Council (ITC) at IIT Bombay is dedicated to nurturing the technical spirit. Our mission is to foster innovation, support student-led projects, and create a collaborative technical community. Explore our upcoming events, meet like-minded peers, and get hands-on experience with the latest technologies.
+    </p>
+    <p>
+      Ready to dive deeper? Check out our <a href="about.html" style="color:#ffce00;">About</a> page to learn more about the clubs and technical teams, or head over to <a href="events.html" style="color:#ffce00;">Events</a> to see what’s coming up next. Need to get in touch? Reach us through our <a href="contact.html" style="color:#ffce00;">Contact</a> page.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Institute Technical Council, IIT Bombay. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Toggle nav on mobile
+    function toggleMenu() {
+      const navLinks = document.getElementById('nav-links');
+      navLinks.classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
+
