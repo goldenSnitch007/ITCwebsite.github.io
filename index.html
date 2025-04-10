@@ -10,61 +10,37 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="index.css" /> 
+  <link rel="stylesheet" href="index.css" />
 
   <style>
-    /* Adding these styles directly to ensure the toggle functionality works */
-    /* Mobile navigation styling */
+    /* Ensure navigation stays horizontal on all screen sizes */
     @media screen and (max-width: 768px) {
       header {
-        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 10px 20px;
+      }
+      
+      .brand {
+        margin-right: 20px;
       }
       
       nav {
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: #272727;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-      }
-      
-      nav.active {
-        max-height: 300px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: auto;
       }
       
       #nav-links {
-        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         padding: 0;
+        margin: 0;
       }
       
       #nav-links li {
-        width: 100%;
-        text-align: center;
-        padding: 15px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      
-      #nav-links li:last-child {
-        border-bottom: none;
-      }
-      
-      .menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        color: #ffce00;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 10px;
-        transition: transform 0.3s;
-      }
-      
-      .menu-toggle.active {
-        transform: rotate(90deg);
+        padding: 5px 10px;
       }
     }
   </style>
@@ -73,8 +49,7 @@
   <!-- Header & Nav -->
   <header>
     <div class="brand">ITC</div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">&#9776;</button>
-    <nav id="mainNav">
+    <nav>
       <ul id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -109,55 +84,5 @@
   <footer>
     <p>&copy; 2025 Institute Technical Council, IIT Bombay. All rights reserved.</p>
   </footer>
-
-  <script>
-    // Improved mobile navigation toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuToggle = document.getElementById('menuToggle');
-      const mainNav = document.getElementById('mainNav');
-      
-      // Toggle menu function
-      function toggleMenu() {
-        menuToggle.classList.toggle('active');
-        mainNav.classList.toggle('active');
-        
-        // Toggle aria-expanded for accessibility
-        const isExpanded = mainNav.classList.contains('active');
-        menuToggle.setAttribute('aria-expanded', isExpanded);
-      }
-      
-      // Add click event to menu button
-      menuToggle.addEventListener('click', toggleMenu);
-      
-      // Close menu when clicking elsewhere on the page
-      document.addEventListener('click', function(event) {
-        const isNavOpen = mainNav.classList.contains('active');
-        const clickedInsideNav = mainNav.contains(event.target);
-        const clickedOnToggle = menuToggle.contains(event.target);
-        
-        if (isNavOpen && !clickedInsideNav && !clickedOnToggle) {
-          toggleMenu();
-        }
-      });
-      
-      // Close menu when window is resized above mobile breakpoint
-      window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && mainNav.classList.contains('active')) {
-          mainNav.classList.remove('active');
-          menuToggle.classList.remove('active');
-        }
-      });
-      
-      // Close menu when a nav link is clicked
-      const navLinks = document.querySelectorAll('#nav-links a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          if (window.innerWidth <= 768 && mainNav.classList.contains('active')) {
-            toggleMenu();
-          }
-        });
-      });
-    });
-  </script>
 </body>
 </html>
