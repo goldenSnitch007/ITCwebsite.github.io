@@ -4,17 +4,77 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ITC - Home</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="index.css" />
+  <!-- Google Fonts for consistent typography -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="index.css" /> 
+
+  <style>
+    /* Adding these styles directly to ensure the toggle functionality works */
+    /* Mobile navigation styling */
+    @media screen and (max-width: 768px) {
+      header {
+        position: relative;
+      }
+      
+      nav {
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #272727;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+      
+      nav.active {
+        max-height: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      
+      #nav-links {
+        flex-direction: column;
+        padding: 0;
+      }
+      
+      #nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      #nav-links li:last-child {
+        border-bottom: none;
+      }
+      
+      .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #ffce00;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px;
+        transition: transform 0.3s;
+      }
+      
+      .menu-toggle.active {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Header & Nav -->
   <header>
     <div class="brand">ITC</div>
-    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
-    <nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">&#9776;</button>
+    <nav id="mainNav">
       <ul id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -38,10 +98,10 @@
   <section class="info-section">
     <h2>What is ITC?</h2>
     <p>
-      The Institute Technical Council (ITC) at IIT Bombay is dedicated to nurturing the technical spirit. Our mission is to foster innovation, support student-led projects, and create a collaborative technical community.
+      The Institute Technical Council (ITC) at IIT Bombay is dedicated to nurturing the technical spirit. Our mission is to foster innovation, support student-led projects, and create a collaborative technical community. Explore our upcoming events, meet like-minded peers, and get hands-on experience with the latest technologies.
     </p>
     <p>
-      Ready to dive deeper? Check out our <a href="about.html" style="color:#ffce00;">About</a> page, see upcoming <a href="events.html" style="color:#ffce00;">Events</a>, or reach out via our <a href="contact.html" style="color:#ffce00;">Contact</a> page.
+      Ready to dive deeper? Check out our <a href="about.html" style="color:#ffce00;">About</a> page to learn more about the clubs and technical teams, or head over to <a href="events.html" style="color:#ffce00;">Events</a> to see what's coming up next. Need to get in touch? Reach us through our <a href="contact.html" style="color:#ffce00;">Contact</a> page.
     </p>
   </section>
 
@@ -50,14 +110,54 @@
     <p>&copy; 2025 Institute Technical Council, IIT Bombay. All rights reserved.</p>
   </footer>
 
-  <!-- JS -->
-  <script src="index.js">
-    // Toggle nav on mobile
-function toggleMenu() {
-  const navLinks = document.getElementById('nav-links');
-  navLinks.classList.toggle('show');
-}
-
+  <script>
+    // Improved mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const mainNav = document.getElementById('mainNav');
+      
+      // Toggle menu function
+      function toggleMenu() {
+        menuToggle.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        
+        // Toggle aria-expanded for accessibility
+        const isExpanded = mainNav.classList.contains('active');
+        menuToggle.setAttribute('aria-expanded', isExpanded);
+      }
+      
+      // Add click event to menu button
+      menuToggle.addEventListener('click', toggleMenu);
+      
+      // Close menu when clicking elsewhere on the page
+      document.addEventListener('click', function(event) {
+        const isNavOpen = mainNav.classList.contains('active');
+        const clickedInsideNav = mainNav.contains(event.target);
+        const clickedOnToggle = menuToggle.contains(event.target);
+        
+        if (isNavOpen && !clickedInsideNav && !clickedOnToggle) {
+          toggleMenu();
+        }
+      });
+      
+      // Close menu when window is resized above mobile breakpoint
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && mainNav.classList.contains('active')) {
+          mainNav.classList.remove('active');
+          menuToggle.classList.remove('active');
+        }
+      });
+      
+      // Close menu when a nav link is clicked
+      const navLinks = document.querySelectorAll('#nav-links a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 768 && mainNav.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
