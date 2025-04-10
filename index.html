@@ -4,54 +4,69 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ITC - Home</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+
   <style>
-    /* Base styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Roboto', sans-serif;
       background: #121212;
       color: #ffffff;
-      margin: 0;
-      padding: 0;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     header {
       background: #1f1f1f;
-      padding: 20px;
+      padding: 15px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .brand {
       font-size: 1.5rem;
       font-weight: 700;
       color: #ffce00;
+      margin-bottom: 10px;
     }
 
-    nav ul {
-      list-style: none;
+    nav {
+      flex-grow: 1;
       display: flex;
-      gap: 20px;
-      margin-top: 10px;
-      padding-left: 0;
+      justify-content: flex-end;
+    }
+
+    #nav-links {
+      display: flex;
       flex-wrap: wrap;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    nav a {
+    #nav-links li a {
       color: #ffffff;
-      text-decoration: none;
       font-weight: 500;
+      padding: 8px 0;
+      transition: color 0.3s;
     }
 
-    nav a:hover {
+    #nav-links li a:hover {
       color: #ffce00;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
     }
 
     .hero {
@@ -130,29 +145,29 @@
       margin-top: 40px;
     }
 
-    /* Responsive improvements */
-    @media (max-width: 768px) {
-      nav ul {
-        justify-content: center;
-      }
-
+    /* Mobile-friendly font adjustments */
+    @media (max-width: 600px) {
       .hero-content h1 {
         font-size: 2rem;
       }
-
       .hero-content p {
         font-size: 1rem;
+      }
+      .cta-btn {
+        width: 100%;
+      }
+      .info-section h2 {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- Header -->
+  <!-- Header & Nav -->
   <header>
     <div class="brand">ITC</div>
     <nav>
-      <ul>
+      <ul id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="events.html">Events</a></li>
@@ -178,7 +193,7 @@
       The Institute Technical Council (ITC) at IIT Bombay is dedicated to nurturing the technical spirit. Our mission is to foster innovation, support student-led projects, and create a collaborative technical community. Explore our upcoming events, meet like-minded peers, and get hands-on experience with the latest technologies.
     </p>
     <p>
-      Ready to dive deeper? Check out our <a href="about.html" style="color:#ffce00;">About</a> page to learn more about the clubs and technical teams, or head over to <a href="events.html" style="color:#ffce00;">Events</a> to see what’s coming up next. Need to get in touch? Reach us through our <a href="contact.html" style="color:#ffce00;">Contact</a> page.
+      Ready to dive deeper? Check out our <a href="about.html" style="color:#ffce00;">About</a> page to learn more about the clubs and technical teams, or head over to <a href="events.html" style="color:#ffce00;">Events</a> to see what's coming up next. Need to get in touch? Reach us through our <a href="contact.html" style="color:#ffce00;">Contact</a> page.
     </p>
   </section>
 
@@ -186,6 +201,5 @@
   <footer>
     <p>&copy; 2025 Institute Technical Council, IIT Bombay. All rights reserved.</p>
   </footer>
-  
 </body>
 </html>
